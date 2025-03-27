@@ -5,9 +5,11 @@ import os
 import sys
 import random
 
+size = 500
+
 s = Screen()
 s.title("Snake Game")
-s.screensize(300,400)
+s.setup(size, size)
 s.bgcolor("pink")
 
 pieces = []
@@ -15,8 +17,8 @@ start_pos = [(0,0), (-20,0), (-40,0)]
 s.tracer(0)
 s.listen()
 
-screen_x = s.window_width() // 2
-screen_y = s.window_height() // 2
+screen_x = size // 2
+screen_y = size // 2
 
 dot = Turtle()
 dot.hideturtle()
@@ -100,7 +102,7 @@ new_dot()
 x = True
 while x:
     s.update()
-    time.sleep(0.1)
+    time.sleep(0.05)
 
     for piece in range(len(pieces)-1, 0,-1):
         new_x = pieces[piece-1].xcor()
@@ -114,4 +116,4 @@ while x:
     if eat():
         new_dot()
     
-s.clickonexit()
+s.exitonclick()
