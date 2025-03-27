@@ -27,6 +27,10 @@ dot.color("black")
 dot.penup()
 dot.shapesize(stretch_wid=0.5, stretch_len=0.5)
 
+text = Turtle()
+text.hideturtle()
+text.color("white")
+
 for i in start_pos:
     snake = Turtle()
     snake.shape("square")
@@ -90,14 +94,30 @@ def eat():
 def exit(x,y):
     s.bye()
 
+def restart(x,y):
+    python = sys.executable
+    os.execl(python, python, *sys.argv)
+
 s.onkey(go_up, "Up")
 s.onkey(go_down, "Down")
 s.onkey(go_right, "Right")
 s.onkey(go_left, "Left")
 
-#quit.onclick(exit)
-
 new_dot()
+
+score = Turtle()
+score.hideturtle()
+score.color("black")
+score.penup()
+score.setheading(90)
+score.forward(230)
+score_int = 0
+
+def update_score():
+    score.clear()
+    score.write(f"Score: {score_int}", move=False, align="center", font=("Courier", 12))
+
+update_score()
 
 x = True
 while x:
@@ -111,9 +131,13 @@ while x:
     pieces[0].forward(10)
 
     if wall() or death():
-        restart()
+        s.bgcolor("black")
+        text.write("GAME OVER", move=False, align="center", font=("Courier", 20))
+        s.onclick(restart)
 
     if eat():
         new_dot()
+        score_int += 1
+        update_score()
     
 s.exitonclick()
