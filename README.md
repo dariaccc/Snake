@@ -5,6 +5,6 @@ The is simple but works well - it includes all the classic aspects, a snake that
 The game also keeps score on how many bites the snake has grown.
 When losing the game simply restarts and the score resets, making it easier to keep playing.
 
-![Snake-game](snake_recording.mp4)
+![Snake-game](screenshot.png)
 
 Try it out, it gets addictive really fast!:)
